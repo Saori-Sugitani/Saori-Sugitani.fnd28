@@ -1,0 +1,97 @@
+/* まず、style.cssにこのルールを書き入れてください。 */
+body {
+  background-color: #99FFFF;
+}
+
+/* ログイン画面 */
+.container1 {
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  color: black;
+  border-radius: 20px;
+  margin: 0 auto;
+  border: 1px solid rgb(156, 156, 156);
+  left: 1000px; 
+  transform: translateY(-600px);
+  /* display: none;   */
+}
+
+.textbox {
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgb(145, 145, 145);
+}
+
+.textbox:hover {
+  background-color: rgb(188, 189, 255);
+}
+
+.button {
+  width: calc(20% + 30px);
+  height: 50px;
+  background-color: rgb(105, 230, 121);
+  border: none;
+  border-radius: 5px;   
+}
+
+.button:hover {
+ background: rgb(188, 189, 255);
+}
+
+.margin {
+  margin-top: 20px;
+}
+
+.close-x {
+  position: relative; /* 追加 */
+  left: 40%; /* 左端を画面中央に移動 */
+}
+
+
+
+/* ログインメンバー一覧 */
+.container3 {
+  width: 250px;
+  height: 600px;
+  background-color: white;
+  color: black;
+  border-radius: 20px;
+  margin: 0 auto;
+  border: 1px solid rgb(156, 156, 156);
+  left: 1000px;   
+}
+
+table th,table td{
+  text-align: center;
+}
+
+
+
+/* ログイン情報 */
+.container2 {
+  width: 100px;
+  height: 110px;
+  border-radius: 20px;
+  border: 1px solid rgb(156, 156, 156);
+  background-color: white;
+  color: black;
+  position: relative; /* 追加 */
+  left: 80%; /* 左端を画面中央に移動 */
+  transform: translateY(-600px);
+  text-align: center;
+  line-height: 0.5;
+}
+
+.button-logout {
+  width: calc(20% + 55px);
+  height: 30px;
+  background-color: rgb(84, 193, 236);
+  border: none;
+  border-radius: 5px;
+}
+
+.button-logout:hover {
+ background: rgb(188, 189, 255);
+}
