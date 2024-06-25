@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>勤務中</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>        
+    <div class="container3">
+        <h1 id="loginTop" style=text-align:center>只今のキャスト</h1>
+        <table class="table" style="margin-left:30px;border-collapse: collapse" width="200">
+            <left>
+                <tr>
+                    <th>名前</th>
+                    <th>戦闘中⁉</th>
+                </tr>
+                <!-- <tr>
+                    <td>カピパラ</td>
+                    <td><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Y7rgTcW5NdDkxvwMW4Gdj2Q3G3lZVBvHHC10A3T_Iwxj0257NbTbdhvWKFOqn7nxXw6-V4P_0VFuJZ_5cQSDPxlazFKTD9N-d1A0IrX0k7LoaVpG3X9IwQ48H0zfXTJOT1JntRr0Lq3o/s400/onepiece01_luffy.png"
+                         width="60px" height="60px" alt="" />
+                    </td>
+                </tr> -->
+            </left>
+        </table>
+     </div>
+
+     <div class="container2">
+        <p>ユーザー名</p>
+        <p id="user">ゲスト</p>
+        <br><input type="button" value="ログアウト" class="button-logout">
+    </div>
+    <center>
+        <div class="container1">
+            <input type="button" value="×" class="close-x" onclick="close()">
+            <h1 id="loginTop">ログイン</h1>
+            <p>ゲスト</p>
+            <input type="text" id="username" class="textbox" placeholder="ユーザー名を入力">
+            <p>所属コード</p>
+            <input type="text" id="department" class="textbox" placeholder="XA340">
+            <br><input type="button" value="ログイン" class="button margin" onclick="login()">
+        </div>
+ </center>
+</body>
+<script src="script.js"></script>
+</html>
