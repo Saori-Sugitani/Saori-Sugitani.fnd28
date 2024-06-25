@@ -1,0 +1,143 @@
+'use strict'
+// 1行目に記載している 'use strict' は削除しないでください
+
+
+let userData = [//必要に応じてここにログイン情報を追加する。例:{name: "user4",department: XA340}
+  {name: "ねこ",depart: "XA340" },
+  {name: "カピパラ",depart: "XA340" },
+  {name: "きつね",depart: "XA340" }
+];
+
+
+//userDataをループをしてテーブルへ追加する
+for (const obj of userData){
+  const value = obj["name"];
+
+//テーブルへ行の追加をする
+let table = document.getElementsByClassName('table')[0];
+let newRow = table.insertRow();
+
+let newCell = newRow.insertCell();
+let newText = document.createTextNode(value);
+newCell.appendChild(newText);
+
+newCell = newRow.insertCell();
+let newImg = document.createElement("img");
+newImg.src ="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Y7rgTcW5NdDkxvwMW4Gdj2Q3G3lZVBvHHC10A3T_Iwxj0257NbTbdhvWKFOqn7nxXw6-V4P_0VFuJZ_5cQSDPxlazFKTD9N-d1A0IrX0k7LoaVpG3X9IwQ48H0zfXTJOT1JntRr0Lq3o/s400/onepiece01_luffy.png" ;
+newImg.style.width="60px";
+newImg.style.height="60px";
+newCell.appendChild(newImg);
+}
+
+
+
+//ログイン時のアクション
+let loginUser = {};
+function login() {
+  let userName = document.getElementById("userName").value;
+  let depart = document.getElementById("department").value;
+
+  let found = false;
+  let i = 0;
+
+  while (!found && i < userData.length) {//foundがtrueを返すかuserDataのlengthがiより少なくなるまで以下の処理を実行
+    loginUser = userData[i];
+    if (loginUser.hasOwnProperty("name") && loginUser.hasOwnProperty("depart")) {
+      if (loginUser.name === userName && loginUser.depart === depart) {
+        found = true;
+      }
+    }
+    i++;
+  }
+
+  if (found) {/*foundがtrueの場合にcontainer2の要素(<p>)を上書きする。*/
+    alert(`こんにちは。${userName}さん。`);
+    console.log(`logined is ${userName}`);
+    document.getElementById("user").textContent = loginUser.name;
+    
+
+
+      
+  } else {
+      //オブジェクトの形で　userData　へ入れる
+      const newUserObject = {};
+      newUserObject["neme"] = userName;
+      newUserObject["depart"] = depart;
+      loginUser = newUserObject;
+      userData.push(newUserObject);
+
+      console.log("ログイン情報を登録しました");
+
+      alert(`こんにちは。${userName}さん。`);
+      console.log(`logined is ${userName}`);
+      document.getElementById("user").textContent = userName;
+
+
+      //新ユーザー名をテーブルへ行の追加をする
+      let table = document.getElementsByClassName('table')[0];
+      let newRow = table.insertRow();
+
+      let newCell = newRow.insertCell();
+      let newText = document.createTextNode(userName);
+      newCell.appendChild(newText);
+
+      newCell = newRow.insertCell();
+      let newImg = document.createElement("img");
+      newImg.src ="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Y7rgTcW5NdDkxvwMW4Gdj2Q3G3lZVBvHHC10A3T_Iwxj0257NbTbdhvWKFOqn7nxXw6-V4P_0VFuJZ_5cQSDPxlazFKTD9N-d1A0IrX0k7LoaVpG3X9IwQ48H0zfXTJOT1JntRr0Lq3o/s400/onepiece01_luffy.png" ;
+      newImg.style.width="60px";
+      newImg.style.height="60px";
+      newCell.appendChild(newImg);
+  }
+  loginUser;
+  return console.log(loginUser);
+}
+
+
+//コンテナ１を非表示にする
+//ログイン画面を閉じるのアクション
+//ボタン要素を取得
+let switchBtn = document.getElementsByClassName("button margin")[0];
+let switchBtnX = document.getElementsByClassName("close-x")[0];
+//表示・非表示を切り替える要素を取得
+let box = document.getElementsByClassName("container1")[0];
+
+//styleのdisplayを変更する関数
+function changeElement() {
+  if (box.style.display === '') {
+      box.style.display = 'none';
+  } else {
+      box.style.display = '';
+  }
+}
+
+//上記関数をボタンクリック時に実行
+switchBtn.addEventListener('click', changeElement);
+switchBtnX.addEventListener('click', changeElement);
+
+
+
+//ログアウト時のアクション
+//loginUser{例.name: 'ねこ', depart: 'XA340'}を使ってuserDataから検索
+function logOut(){
+  let obj = {};
+  for (let i = 0; i < userData.length; i++){
+    obj = userData[i];
+    if(obj["name"] === loginUser["name"] && obj["depart"] === loginUser["depart"]){
+      console.log(i);
+
+      //ヒットしたら、その配列のテーブルを消す
+      //テーブルをゲット
+      let table = document.getElementsByClassName('table')[0];
+      //テーブルの行を削除
+      table.deleteRow(i + 1);
+    }
+  }
+}
+
+//上記関数をボタンクリック時に実行
+//ボタン要素を取得
+let logOutBtn = document.getElementsByClassName("button-logout")[0];
+logOutBtn.addEventListener('click', logOut);
+
+
+
