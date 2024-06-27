@@ -153,6 +153,28 @@ if (window.localStorage) {
 }
 
 //userDataをループをしてテーブルへ追加する
+// function roop(userData){
+//   for (const obj of userData){
+//     const value = obj["name"];
+  
+//   //テーブルへ行の追加をする
+//   let table = document.getElementsByClassName('table')[0];
+//   let newRow = table.insertRow();
+  
+//   let newCell = newRow.insertCell();
+//   let newText = document.createTextNode(value);
+//   newCell.appendChild(newText);
+  
+//   newCell = newRow.insertCell();
+//   let newImg = document.createElement("img");
+//   newImg.src ="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Y7rgTcW5NdDkxvwMW4Gdj2Q3G3lZVBvHHC10A3T_Iwxj0257NbTbdhvWKFOqn7nxXw6-V4P_0VFuJZ_5cQSDPxlazFKTD9N-d1A0IrX0k7LoaVpG3X9IwQ48H0zfXTJOT1JntRr0Lq3o/s400/onepiece01_luffy.png" ;
+//   newImg.style.width="60px";
+//   newImg.style.height="60px";
+//   newCell.appendChild(newImg);
+//   }  
+// }
+// window.onload = roop(userData);
+
 for (const obj of userData){
   const value = obj["name"];
 
