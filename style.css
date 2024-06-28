@@ -72,7 +72,7 @@ table th,table td{
 /* ログイン情報 */
 .container2 {
   width: 100px;
-  height: 110px;
+  height: 190px;
   border-radius: 20px;
   border: 1px solid rgb(156, 156, 156);
   background-color: white;
@@ -81,7 +81,10 @@ table th,table td{
   left: 80%; /* 左端を画面中央に移動 */
   transform: translateY(-600px);
   text-align: center;
-  line-height: 0.5;
+  line-height: 1;/* 行間が変わらない */
+  display:inline-block;
+  vertical-align: middle;
+  line-height:normal;
 }
 
 .button-logout {
@@ -93,5 +96,17 @@ table th,table td{
 }
 
 .button-logout:hover {
+ background: rgb(188, 189, 255);
+}
+
+.button-other-account {
+  width: calc(20% + 90px);
+  height: 30px;
+  background-color: rgb(108, 114, 240);
+  border: none;
+  border-radius: 5px;
+}
+
+.button-other-account:hover {
  background: rgb(188, 189, 255);
 }
