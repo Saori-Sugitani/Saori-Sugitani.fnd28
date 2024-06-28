@@ -8,13 +8,15 @@ let userData = [//必要に応じてここにログイン情報を追加する�
   {name: "きつね",depart: "夢の国" }
 ];
 
+let userName
+let depart
 
 
 //ログイン時のアクション
 let loginUser = {};
 function login() {
-  let userName = document.getElementById("user-name").value;
-  let depart = document.getElementById("department").value;
+  userName = document.getElementById("user-name").value;
+  depart = document.getElementById("department").value;
 
   //localStorageへログイン情報を保存する
   localStorage.setItem('name', userName);
@@ -45,7 +47,7 @@ function login() {
   } else {
       //オブジェクトの形で　userData　へ入れる
       const newUserObject = {};
-      newUserObject["neme"] = userName;
+      newUserObject["name"] = userName;
       newUserObject["depart"] = depart;
       loginUser = newUserObject;
       userData.push(newUserObject);
@@ -108,16 +110,11 @@ switchBtnX.addEventListener('click', changeElement);
 //loginUser{例.name: 'ねこ', depart: 'XA340'}を使ってuserDataから検索
 function logOut(){
 
-  //localStorageからユーザーデータ&オブジェクトを消す
-  localStorage.removeItem('name');
-  localStorage.removeItem('depart');
-  localStorage.removeItem('myObject');
-
   //テーブルからユーザーの行を削除
   let obj = {};
   for (let i = 0; i < userData.length; i++){
     obj = userData[i];
-    if(obj["name"] === loginUser["name"] && obj["depart"] === loginUser["depart"]){
+    if(obj["name"] === userName && obj["depart"] === depart){
       console.log(i);
 
       //ヒットしたら、その配列のテーブルを消す
@@ -135,11 +132,31 @@ let logOutBtn = document.getElementsByClassName("button-logout")[0];
 logOutBtn.addEventListener('click', logOut);
 
 
+
+//他のアカウント時のアクション
+function otherAccount(){
+  //localStorageからユーザーデータを消す
+  localStorage.removeItem('name');
+  localStorage.removeItem('depart');
+
+   //localStorageからオブジェクトを消す
+  localStorage.removeItem('myObject');
+}
+//上記関数をボタンクリック時に実行
+//ボタン要素を取得
+let otherAccountBtn = document.getElementsByClassName("button-other-account")[0];
+otherAccountBtn.addEventListener('click', otherAccount);
+
+
+
 //localStorageが利用できるか確認&読み込み
+// let userDataNew = [];
 if (window.localStorage) {
   console.log("localStorageが利用出来ます！");
   //localStorageからユーザー名を読み込み
-  let userName = localStorage.getItem('name');
+  userName = localStorage.getItem('name');
+  depart = localStorage.getItem('depart');
+
 
   if(userName === null){
   } else {
@@ -149,50 +166,84 @@ if (window.localStorage) {
     userData = JSON.parse(localStorage.getItem("myObject"));
   }
   console.log(userName);
+  console.log(depart);
+  console.log(JSON.parse(localStorage.getItem("myObject")));
   console.log(userData);
 }
 
-//userDataをループをしてテーブルへ追加する
-// function roop(userData){
-//   for (const obj of userData){
-//     const value = obj["name"];
-  
-//   //テーブルへ行の追加をする
-//   let table = document.getElementsByClassName('table')[0];
-//   let newRow = table.insertRow();
-  
-//   let newCell = newRow.insertCell();
-//   let newText = document.createTextNode(value);
-//   newCell.appendChild(newText);
-  
-//   newCell = newRow.insertCell();
-//   let newImg = document.createElement("img");
-//   newImg.src ="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Y7rgTcW5NdDkxvwMW4Gdj2Q3G3lZVBvHHC10A3T_Iwxj0257NbTbdhvWKFOqn7nxXw6-V4P_0VFuJZ_5cQSDPxlazFKTD9N-d1A0IrX0k7LoaVpG3X9IwQ48H0zfXTJOT1JntRr0Lq3o/s400/onepiece01_luffy.png" ;
-//   newImg.style.width="60px";
-//   newImg.style.height="60px";
-//   newCell.appendChild(newImg);
-//   }  
+// //更新時に実行させる
+// window.addEventListener('unload',reload);
+
+// function reload(){
+//   //localStorageからオブジェクトを読み込み ※JSON文字列 -> JavaScriptオブジェクトに変換
+//   userData = JSON.parse(localStorage.getItem("myObject"));
+    
+//   //ログインボックスを閉じる
+//   if (box.style.display === '') {
+//     box.style.display = 'none';
+//     } else {
+//       box.style.display = '';
+//   }
+
+//   if(userName !== null){
+//     //userDataへ追記（localStorageから読み込んだユーザー名を）
+//     //オブジェクトの形で　userData　へ入れる
+//     const ageinUserObject = {};
+//     ageinUserObject["neme"] = userName;
+//     ageinUserObject["depart"] = depart;
+//     userData.push(ageinUserObject);
+//     console.log(userData);
+//   }else{
+//     console.log("nullです")
+//   }
 // }
-// window.onload = roop(userData);
 
-for (const obj of userData){
-  const value = obj["name"];
 
-//テーブルへ行の追加をする
-let table = document.getElementsByClassName('table')[0];
-let newRow = table.insertRow();
 
-let newCell = newRow.insertCell();
-let newText = document.createTextNode(value);
-newCell.appendChild(newText);
-
-newCell = newRow.insertCell();
-let newImg = document.createElement("img");
-newImg.src ="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Y7rgTcW5NdDkxvwMW4Gdj2Q3G3lZVBvHHC10A3T_Iwxj0257NbTbdhvWKFOqn7nxXw6-V4P_0VFuJZ_5cQSDPxlazFKTD9N-d1A0IrX0k7LoaVpG3X9IwQ48H0zfXTJOT1JntRr0Lq3o/s400/onepiece01_luffy.png" ;
-newImg.style.width="60px";
-newImg.style.height="60px";
-newCell.appendChild(newImg);
+//userDataをループをしてテーブルへ追加する
+function roop(userData){
+  console.log(userData);
+  for (const obj of userData){
+    const value = obj["name"];
+    console.log(value);
+  
+  //テーブルへ行の追加をする
+  let table = document.getElementsByClassName('table')[0];
+  let newRow = table.insertRow();
+  
+  let newCell = newRow.insertCell();
+  let newText = document.createTextNode(value);
+  newCell.appendChild(newText);
+  
+  newCell = newRow.insertCell();
+  let newImg = document.createElement("img");
+  newImg.src ="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Y7rgTcW5NdDkxvwMW4Gdj2Q3G3lZVBvHHC10A3T_Iwxj0257NbTbdhvWKFOqn7nxXw6-V4P_0VFuJZ_5cQSDPxlazFKTD9N-d1A0IrX0k7LoaVpG3X9IwQ48H0zfXTJOT1JntRr0Lq3o/s400/onepiece01_luffy.png" ;
+  newImg.style.width="60px";
+  newImg.style.height="60px";
+  newCell.appendChild(newImg);
+  }  
 }
+window.onload = roop(userData);
+
+//直接じゃなくて関数へ変更の為、コメントアウト
+// for (const obj of userData){
+//   const value = obj["name"];
+
+// //テーブルへ行の追加をする
+// let table = document.getElementsByClassName('table')[0];
+// let newRow = table.insertRow();
+
+// let newCell = newRow.insertCell();
+// let newText = document.createTextNode(value);
+// newCell.appendChild(newText);
+
+// newCell = newRow.insertCell();
+// let newImg = document.createElement("img");
+// newImg.src ="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Y7rgTcW5NdDkxvwMW4Gdj2Q3G3lZVBvHHC10A3T_Iwxj0257NbTbdhvWKFOqn7nxXw6-V4P_0VFuJZ_5cQSDPxlazFKTD9N-d1A0IrX0k7LoaVpG3X9IwQ48H0zfXTJOT1JntRr0Lq3o/s400/onepiece01_luffy.png" ;
+// newImg.style.width="60px";
+// newImg.style.height="60px";
+// newCell.appendChild(newImg);
+// }
 
 //undefinedを回避するために試したけど、ダメだった！
 // setTimeout(() => {
